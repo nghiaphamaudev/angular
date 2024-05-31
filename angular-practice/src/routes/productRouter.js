@@ -10,6 +10,9 @@ router
 router
   .route('/:id')
   .delete(productController.deleteProduct)
-  .get(productController.getProduct);
+  .get(productController.getProduct)
+  .patch(productController.updateProduct);
+
+router.get('/search', productController.getProductBySearch);
 
 module.exports = router;

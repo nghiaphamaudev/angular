@@ -1,0 +1,93 @@
+<section
+  class="container mx-auto p-10 md:py-12 px-0 md:p-8 md:px-0 font-primary"
+>
+  <section
+    class="p-2 md:p-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 items-stretch"
+  >
+    <div *ngFor="let product of products" class="flex">
+      <section
+        class="flex flex-col p-5 py-10 bg-purple-50 text-center transform duration-500 hover:-translate-y-2 cursor-pointer w-full"
+      >
+        <button
+          class="absolute top-2 right-2 text-gray-500"
+          (click)="toggleHeart(product)"
+        >
+          <i *ngIf="!product.liked" class="fa-regular fa-heart"></i>
+          <i *ngIf="product.liked" class="fa-solid fa-heart"></i>
+        </button>
+        <a
+          href=""
+          [routerLink]="['/products/', product._id]"
+          class="flex justify-center"
+        >
+          <img class="w-24" src="{{ product.imageUrl }}" alt="" />
+        </a>
+        
+        <div class="space-x-1 flex justify-center mt-10">
+          <div class="relative" title="rating">
+            <div
+              class="absolute top-0 left-0 h-full overflow-hidden"
+              [style.width.%]="product.starRating * 20"
+            >
+              <div class="flex w-24">
+                <span class="fa fa-star text-yellow-500"></span>
+                <span class="fa fa-star text-yellow-500"></span>
+                <span class="fa fa-star text-yellow-500"></span>
+                <span class="fa fa-star text-yellow-500"></span>
+                <span class="fa fa-star text-yellow-500"></span>
+              </div>
+            </div>
+            <div class="flex w-24">
+              <span class="fa fa-star text-gray-300"></span>
+              <span class="fa fa-star text-gray-300"></span>
+              <span class="fa fa-star text-gray-300"></span>
+              <span class="fa fa-star text-gray-300"></span>
+              <span class="fa fa-star text-gray-300"></span>
+            </div>
+          </div>
+        </div>
+        <h1 class="text-2xl my-5">{{ product.productName }}</h1>
+        <p class="mb-5 flex-grow">
+          {{ product.description }}
+        </p>
+        <h2 class="font-semibold mb-5">${{ product.price }}</h2>
+        <button
+          class="p-2 px-6 bg-purple-500 text-white rounded-md hover:bg-purple-600"
+        >
+          Add To Cart
+        </button>
+      </section>
+    </div>
+  </section>
+</section>
+
+<nav
+  aria-label="Page navigation example"
+  class="mb-10 font-primary flex justify-center"
+>
+  <ul class="inline-flex -space-x-px text-base h-10">
+    <li>
+      <a
+          (click)="getPageUrlPrev()"    class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        <i class="fa-solid fa-arrow-left mr-2"></i> <span>Previous</span>
+      </a>
+    </li>
+    <div *ngFor="let page of totalPage">
+      <a
+        (click)="getPageUrlTo(page)"
+        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        {{ page }}
+      </a>
+    </div>
+
+    <li>
+      <a
+        (click)="getPageUrlNext()" 
+        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        ><span class="mr-2">Next</span><i class="fa-solid fa-arrow-right"></i
+      ></a>
+    </li>
+  </ul>
+</nav>

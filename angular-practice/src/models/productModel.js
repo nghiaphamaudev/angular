@@ -19,8 +19,12 @@ const productSchema = mongoose.Schema({
     default: 3.5,
   },
   description: String,
+  showProduct: Boolean,
+  category: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Category',
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;
-

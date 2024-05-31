@@ -3,7 +3,7 @@ import { Iproduct } from './../../../../types/products';
 import { Component, inject } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -19,52 +19,48 @@ export class ProductListComponent {
   //instance
 
   listProduct: Iproduct[] = [];
+  route = inject(ActivatedRoute);
 
   ishowImgae: Boolean = true;
   toggleImage = () => {
     this.ishowImgae = !this.ishowImgae;
   };
 
-  loadProducts() {
-    this.productService.getAllProducts().subscribe(
-      (response: any) => {
-        if (response && response.status === 'success' && response.products) {
-          this.products = response.products;
-          this.listProduct = [...this.products];
-        } else {
-          console.error('Invalid response from API:', response);
-        }
+  loadProducts(page: number) {
+    this.productService.getAllProducts(page).subscribe({
+      next: (response: any) => {
+        this.products = response.products;
+        this.listProduct = [...this.products];
       },
-      (error) => {
-        console.error('Error fetching products', error);
-      }
-    );
+      error: (error) => {
+        console.log(error.message);
+      },
+    });
   }
 
-
   ngOnInit(): void {
-    this.loadProducts();
+    this.route.queryParams.subscribe((params) => {
+      this.loadProducts(params['page']);
+    });
   }
 
   ngOnDeleteProduct = (productId: string) => {
     const message = confirm('Bạn có chắc không??');
-    console.log(productId);
     if (message) {
-      this.productService.deleteProduct(productId).subscribe(
-        () => {
+      this.productService.deleteProduct(productId).subscribe({
+        next: () => {
+          this.products = this.products.filter(
+            (product) => product._id !== productId
+          );
           alert('The product is deleted successfully!!');
-          this.loadProducts();
         },
-        (error) => {
-          console.log('The delete failed: ', error);
-        }
-      );
+        error: (error) => {
+          console.log(error.message);
+        },
+      });
     }
   };
 
-  ngDoCheck() {
-    console.log(this.products);
-  }
   filterValue: string = '';
   filter() {
     this.products = this.listProduct.filter((product) =>

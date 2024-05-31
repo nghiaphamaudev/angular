@@ -2,12 +2,14 @@ import { Iproduct } from './../types/products';
 import { Inventor } from './../types/inventors';
 import { IStudents } from './../types/students';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AlertComponent } from './component/alert/alert.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AlertComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

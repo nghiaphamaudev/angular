@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const productRouter = require('./src/routes/productRouter');
+const categoryRouter = require('./src/routes/categoryRouter');
 const handleGlobalError = require('./src/controllers/errorController');
 
 app.use(express.json());
@@ -19,6 +20,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './src/views'));
 
 app.use('/api/v1/products', productRouter);
+app.use('/api/v1/categories', categoryRouter);
 
 app.use(handleGlobalError);
 

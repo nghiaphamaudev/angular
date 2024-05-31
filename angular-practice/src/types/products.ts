@@ -7,6 +7,7 @@ export interface Iproduct {
   description: string;
   starRating: number;
   imageUrl: string;
+  liked: boolean;
 }
 
 export interface ApiResponse {

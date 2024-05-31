@@ -1,4 +1,4 @@
-<main class="ml-60 pt-16 max-h-screen overflow-auto">
+<main class="ml-60 pt-16 max-h-screen overflow-auto font-primary">
   <div class="px-6 py-8">
     <div class="max-w-7xl mx-auto">
       <div class="bg-white rounded-3xl p-8 mb-5">
@@ -170,9 +170,12 @@
                     >
                       <i class="fa-solid fa-trash"></i>
                     </button>
-                    <button type="button" class="mr-2">
+                    <a
+                      class="mr-2"
+                      [routerLink]="['/admin/products/edit/', product._id]"
+                    >
                       <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
+                    </a>
                   </td>
                 </tr>
 
