@@ -4,7 +4,7 @@ const APPError = require('./../utils/appError');
 
 exports.getALlProduct = catchAsync(async (req, res, next) => {
   const currentPage = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 6;
+  const limit = req.query.limit * 1 || 0;
   const skip = currentPage * limit - limit;
   const nameProduct = await Product.find({}, 'productName -_id');
   const countPages = Math.ceil(((await Product.countDocuments()) * 1) / limit);

@@ -20,8 +20,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css",
-              "src/app/component/alert/alert.component.css"
+              "./node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "src/styles.css"
             ],
             "scripts": ["src/assets/alert.js"]
           },

@@ -45,7 +45,7 @@ export class AlertComponent {
                          <i class="fa-solid ${this.icon}"></i>
                          <span>${this.message}</span>
                       </div>
-                      <i class="fa-solid fa-xmark" onclick="this.parentElement.remove()"></i>`;
+                      <i class="fa-solid fa-xmark"></i>`;
     const notifications = document.querySelector('.notifications');
     notifications?.appendChild(toast);
     (toast as any).timeoutId = setTimeout(

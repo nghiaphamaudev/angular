@@ -23,24 +23,26 @@ import {
   _getOptionScrollPosition,
   _isTestEnvironment,
   addAriaReferencedId,
-  animate,
   coerceArray,
   coerceCssPixelValue,
   coerceElement,
   coerceNumberProperty,
   getRtlScrollAxisType,
-  group,
   hasModifierKey,
   removeAriaReferencedId,
-  state,
-  style,
-  supportsScrollBehavior,
-  transition,
-  trigger
-} from "./chunk-33OA44ZE.js";
+  supportsScrollBehavior
+} from "./chunk-OM2MAIZA.js";
 import {
   NG_VALUE_ACCESSOR
 } from "./chunk-VFOXLLHJ.js";
+import {
+  animate,
+  group,
+  state,
+  style,
+  transition,
+  trigger
+} from "./chunk-Q3UMC5JM.js";
 import {
   CommonModule,
   DOCUMENT,

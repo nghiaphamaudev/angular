@@ -28,7 +28,7 @@ const removeToast = (toast) => {
   setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
 };
 
-export const showToast = (id) => {
+ const showToast = (id) => {
   // Getting the icon and text for the toast based on the id passed
   const { icon, text } = toastDetails[id];
   const toast = document.createElement('li'); // Creating a new 'li' element for the toast

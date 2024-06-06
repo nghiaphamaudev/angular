@@ -4,18 +4,22 @@ import { Component, inject } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule],
+  imports: [NgFor, NgIf, FormsModule, RouterModule, ToastModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
+  providers: [MessageService],
 })
 export class ProductListComponent {
   //initial array
   products: Iproduct[] = [];
   productService = inject(ProductService);
+  messageService = inject(MessageService);
   //instance
 
   listProduct: Iproduct[] = [];
@@ -52,7 +56,11 @@ export class ProductListComponent {
           this.products = this.products.filter(
             (product) => product._id !== productId
           );
-          alert('The product is deleted successfully!!');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Delete product is successfully!',
+          });
         },
         error: (error) => {
           console.log(error.message);
